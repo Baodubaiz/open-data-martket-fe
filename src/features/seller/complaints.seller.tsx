@@ -35,7 +35,7 @@ export default function SellerComplaintPage() {
 
     const fetchComplaints = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/api/complaints/seller", {
+        const res = await axios.get("https://open-data-martket-be.vercel.app/api/complaints/seller", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -54,7 +54,7 @@ export default function SellerComplaintPage() {
   const handleSellerAction = async (id: string, action: "COMPENSATED" | "REQUEST_REFUND") => {
     try {
       await axios.patch(
-        `http://localhost:3001/api/complaints/${id}/seller`,
+        `https://open-data-martket-be.vercel.app/api/complaints/${id}/seller`,
         { action },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -41,7 +41,7 @@ export default function FloatingChatWidget({
         if (!conversationId || !token) return;
         const fetchMessages = async () => {
             const res = await fetch(
-                `http://localhost:3001/chat/conversations/${conversationId}/messages`,
+                `https://open-data-martket-be.vercel.app/chat/conversations/${conversationId}/messages`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             const json = await res.json();
@@ -57,7 +57,7 @@ export default function FloatingChatWidget({
     useEffect(() => {
         if (!token) return;
 
-        const s = io("http://localhost:3001", {
+        const s = io("https://open-data-martket-be.vercel.app", {
             auth: { token },
             transports: ["websocket"],
         });

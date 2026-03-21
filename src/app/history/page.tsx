@@ -72,7 +72,7 @@ export default function HistoryPage() {
           return;
         }
 
-        const res = await axios.get("http://localhost:3001/order", {
+        const res = await axios.get("https://open-data-martket-be.vercel.app/order", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -107,7 +107,7 @@ console.log("SELECTED ORDER:", selectedOrder);
 console.log("SELLER ID FE:", (selectedOrder as any).dataset.seller_id);
 
       const res = await axios.post(
-        "http://localhost:3001/api/complaints",
+        "https://open-data-martket-be.vercel.app/api/complaints",
         {
           order_id: selectedOrder.order_id,
           seller_id: (selectedOrder as any).dataset.seller_id,

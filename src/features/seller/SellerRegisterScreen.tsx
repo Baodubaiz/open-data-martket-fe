@@ -119,7 +119,7 @@ export default function SellerRegisterScreen() {
     fileForm.append("front_image", form.front_image);
     fileForm.append("back_image", form.back_image);
 
-    const uploadRes = await fetch("http://localhost:3001/seller-upload/images", {
+    const uploadRes = await fetch("https://open-data-martket-be.vercel.app/seller-upload/images", {
       method: "POST",
       body: fileForm, // KHÔNG set Content-Type, browser tự set
     });
@@ -133,7 +133,7 @@ export default function SellerRegisterScreen() {
     const backImageUrl = uploadData.back_image_url;
 
     // 2️⃣ Gửi request Seller kèm URL ảnh thật
-    const res = await fetch("http://localhost:3001/seller/verification", {
+    const res = await fetch("https://open-data-martket-be.vercel.app/seller/verification", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

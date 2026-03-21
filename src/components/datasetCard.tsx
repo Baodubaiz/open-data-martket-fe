@@ -14,7 +14,7 @@ interface DatasetCardProps {
 
 export function DatasetCard({ dataset, onView, className }: DatasetCardProps) {
     const imageUrl = dataset.thumbnail_url
-        ? `http://localhost:3001${dataset.thumbnail_url}`
+        ? `https://open-data-martket-be.vercel.app${dataset.thumbnail_url}`
         : "/placeholder.png";
 
     const sellerName =

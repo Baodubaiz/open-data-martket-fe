@@ -60,7 +60,7 @@ export default function DatasetOverview({ dataset }: { dataset: Dataset }) {
         }
 
         const token = localStorage.getItem("accessToken");
-        const downloadUrl = `http://localhost:3001/dataset/${dataset.dataset_id}/download`;
+        const downloadUrl = `https://open-data-martket-be.vercel.app/dataset/${dataset.dataset_id}/download`;
 
         // 🔹 Miễn phí → tải ngay
         if (dataset.price_vnd === 0 && dataset.price_eth === 0) {

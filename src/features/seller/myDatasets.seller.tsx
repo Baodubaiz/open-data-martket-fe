@@ -139,7 +139,7 @@ export default function SellerMyDatasets() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 {datasets.map((d: Dataset) => {
                     const imageUrl = d.thumbnail_url
-                        ? `http://localhost:3001${d.thumbnail_url}`
+                        ? `https://open-data-martket-be.vercel.app${d.thumbnail_url}`
                         : "/placeholder.png";
 
                     return (
@@ -246,7 +246,7 @@ export default function SellerMyDatasets() {
                             {editingDataset.thumbnail_url && (
                                 <div className="w-full h-48 rounded-lg overflow-hidden relative border border-slate-700/60 shadow-inner">
                                     <img
-                                        src={`http://localhost:3001${editingDataset.thumbnail_url}`}
+                                        src={`https://open-data-martket-be.vercel.app${editingDataset.thumbnail_url}`}
                                         alt={editingDataset.title}
                                         className="w-full h-full object-cover"
                                         onError={(e) => (e.currentTarget.src = "/placeholder.png")}

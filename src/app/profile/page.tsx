@@ -40,7 +40,7 @@ export default function ProfilePage() {
 
     const fetchSellerStatus = async () => {
       try {
-        const res = await fetch("http://localhost:3001/seller/verification/me", {
+        const res = await fetch("https://open-data-martket-be.vercel.app/seller/verification/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

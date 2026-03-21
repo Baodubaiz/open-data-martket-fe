@@ -35,7 +35,7 @@ export default function AdminComplaintPage() {
 
     const load = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/api/complaints/admin", {
+        const res = await axios.get("https://open-data-martket-be.vercel.app/api/complaints/admin", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -69,7 +69,7 @@ console.log("Escrow ID FE:", escrowId);
     }
 
     await axios.patch(
-      `http://localhost:3001/api/complaints/${complaint.id}/admin/refund`,
+      `https://open-data-martket-be.vercel.app/api/complaints/${complaint.id}/admin/refund`,
      { escrow_id: complaint.order.escrow?.escrow_id },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -87,7 +87,7 @@ console.log("Escrow ID FE:", escrowId);
   const handleClose = async (id: string) => {
     try {
       await axios.patch(
-        `http://localhost:3001/api/complaints/${id}/admin/close`,
+        `https://open-data-martket-be.vercel.app/api/complaints/${id}/admin/close`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

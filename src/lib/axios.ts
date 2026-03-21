@@ -7,5 +7,5 @@ const api = axios.create({
 });
 
 export default api;
-// http://localhost:3001/api
+// https://open-data-martket-be.vercel.app/api
 // https://open-data-martket.vercel.app/api

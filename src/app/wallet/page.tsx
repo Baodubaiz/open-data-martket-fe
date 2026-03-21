@@ -61,7 +61,7 @@ interface WalletResponse {
 }
 
 const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+  process.env.NEXT_PUBLIC_API_URL || "https://open-data-martket-be.vercel.app";
 
 export default function WalletPage() {
   const [data, setData] = useState<WalletResponse | null>(null);

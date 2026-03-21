@@ -12,7 +12,7 @@ interface FeaturedDatasetCardProps {
 
 export default function FeaturedDatasetCard({ dataset, onView }: FeaturedDatasetCardProps) {
     const imageUrl = dataset.thumbnail_url
-        ? `http://localhost:3001${dataset.thumbnail_url}`
+        ? `https://open-data-martket-be.vercel.app${dataset.thumbnail_url}`
         : "/placeholder.png";
 
     const priceVnd = dataset.price_vnd ?? 0;

@@ -24,7 +24,7 @@ export default function DatasetPreviewSection() {
     const rowsFull = fullData?.rows || [];
 
     const handleSampleDownload = () => {
-        const sampleUrl = `http://localhost:3001/dataset/${id}/sample`;
+        const sampleUrl = `https://open-data-martket-be.vercel.app/dataset/${id}/sample`;
         window.open(sampleUrl, "_blank");
     };
 
@@ -35,7 +35,7 @@ export default function DatasetPreviewSection() {
             alert("⚠️ Bạn cần đăng nhập để tải dataset này!");
             return;
         }
-        const downloadUrl = `http://localhost:3001/dataset/${id}/download?token=${token}`;
+        const downloadUrl = `https://open-data-martket-be.vercel.app/dataset/${id}/download?token=${token}`;
         window.open(downloadUrl, "_blank");
     };
 

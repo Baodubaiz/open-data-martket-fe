@@ -18,7 +18,7 @@ export default function ChatWithSellerButton({ sellerId }: Props) {
         }
 
         try {
-            const res = await fetch(`http://localhost:3001/chat/conversations`, {
+            const res = await fetch(`https://open-data-martket-be.vercel.app/chat/conversations`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

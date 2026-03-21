@@ -17,11 +17,11 @@ export default function DatasetDetailPage() {
 
     // Ảnh thumbnail
     const imageUrl = dataset.thumbnail_url
-        ? `http://localhost:3001${dataset.thumbnail_url}`
+        ? `https://open-data-martket-be.vercel.app${dataset.thumbnail_url}`
         : "/placeholder.png";
 
     const datasetUrl = dataset.file_url
-        ? `http://localhost:3001${dataset.file_url}`
+        ? `https://open-data-martket-be.vercel.app${dataset.file_url}`
         : "/placeholder.png";
 
     // Giả định dataset.tags là một mảng các object { tag_id: string, name: string }
