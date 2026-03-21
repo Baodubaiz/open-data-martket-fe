@@ -54,8 +54,12 @@ function PaymentConfirmationContent() {
       toast.success("Xác nhận thành công, đang chuyển sang bước thanh toán...");
       router.push(`/dataset/payment-confirmation/waiting?ref=${bankRef}`);
     } catch (err: any) {
-      console.log(err);
-      toast.error("Lỗi tạo đơn hàng, vui lòng thử lại");
+      console.error(err);
+      const errorMessage =
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        "Lỗi tạo đơn hàng, số dư ko đủ";
+      toast.error(errorMessage);
     }
   };
 
