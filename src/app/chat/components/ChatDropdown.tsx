@@ -38,7 +38,7 @@ export default function ChatDropdown({ token, onSelectConversation }: ChatDropdo
 
     useEffect(() => {
         if (!token) return;
-        const s = io("https://open-data-martket-be.vercel.app", {
+        const s = io("https://open-data-martket-be.vercel.app/api", {
             auth: { token },
             transports: ["websocket"],
         });

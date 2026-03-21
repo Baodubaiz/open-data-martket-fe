@@ -32,7 +32,7 @@ export type SellerVerificationDto = {
 };
 
 const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL || "https://open-data-martket-be.vercel.app";
+  process.env.NEXT_PUBLIC_API_URL || "https://open-data-martket-be.vercel.app/api";
 
 // ✅ Lấy list tất cả yêu cầu seller cho admin
 export async function fetchAdminSellerRequests(

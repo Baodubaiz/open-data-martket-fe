@@ -11,7 +11,7 @@ import { useCategories } from "@/hooks/category/useCategory";
 import { motion } from "framer-motion";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "https://open-data-martket-be.vercel.app";
+  process.env.NEXT_PUBLIC_API_BASE_URL || "https://open-data-martket-be.vercel.app/api";
 
 // Hook filter dataset theo category (GIỮ NGUYÊN)
 const useDatasetsWithFilter = (categoryId: string | null) => {
