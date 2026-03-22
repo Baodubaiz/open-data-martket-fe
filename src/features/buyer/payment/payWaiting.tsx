@@ -86,7 +86,7 @@ export default function BuyerOrderStatusPage() {
                                     ✅ Thanh toán thành công!
                                 </p>
                                 <Link
-                                    href={`https://open-data-martket-be.vercel.app${order.dataset.file_url}`}
+                                    href={`${order.dataset.file_url}`}
                                     className="inline-block mt-2"
                                 >
                                     <Button className="bg-cyan-600 hover:bg-cyan-700">
