@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useAuth } from '@/hooks/auth/useAuth';
-import { FaUser, FaLock, FaPhone, FaWallet, FaUniversity, FaEnvelope, FaUserTag } from "react-icons/fa";
+import { FaUser, FaLock, FaPhone, FaWallet, FaUniversity, FaEnvelope } from "react-icons/fa";
 
 interface RegisterFormData {
     email: string;
@@ -56,7 +56,6 @@ export default function RegisterForm() {
                         { name: "full_name", label: "Họ và tên", icon: <FaUser /> },
                         { name: "email", label: "Email", icon: <FaEnvelope />, type: "email" },
                         { name: "password", label: "Mật khẩu", icon: <FaLock />, type: "password" },
-                        { name: "role", label: "Vai trò", icon: <FaUserTag /> },
                         { name: "phone_number", label: "Số điện thoại", icon: <FaPhone /> },
                         { name: "bank_account", label: "Số tài khoản ngân hàng", icon: <FaUniversity /> },
                         { name: "bank_name", label: "Tên ngân hàng", icon: <FaUniversity /> },
