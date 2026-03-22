@@ -35,7 +35,7 @@ export default function DatasetCheckoutPage() {
 
     // Xử lý URL ảnh
     const imageUrl = currentDataset.thumbnail_url
-        ? `https://open-data-martket-be.vercel.app${currentDataset.thumbnail_url}`
+        ? `${currentDataset.thumbnail_url}`
         : "/placeholder.png";
 
     return (
