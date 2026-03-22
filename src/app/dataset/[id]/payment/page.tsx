@@ -4,6 +4,7 @@
 import PayDataset from "@/features/buyer/payment/payDataset";
 import { useParams } from "next/navigation";
 import Background from "@/components/background";
+import Navbar from "@/components/navBar";
 
 export default function PaymentPage() {
     const { id } = useParams();
@@ -12,6 +13,7 @@ export default function PaymentPage() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 text-white overflow-x-hidden">
             <div className="relative z-0">
+                <Navbar />
                 <Background />
                 <PayDataset />
             </div>

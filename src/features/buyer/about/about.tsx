@@ -33,7 +33,7 @@ export default function AboutPage() {
                 <section className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4">Đội ngũ của chúng tôi</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        {["Lâm Quốc Bảo", "Đào Quốc Bảo"].map((member, idx) => (
+                        {["Lâm Quốc Bảo", "Đào Quốc Bảo", "Nguyễn Quốc Huy"].map((member, idx) => (
                             <div
                                 key={idx}
                                 className="bg-slate-900 p-6 rounded-xl flex flex-col items-center text-center hover:shadow-lg transition-shadow"
