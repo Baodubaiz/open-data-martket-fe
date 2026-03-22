@@ -16,7 +16,7 @@ import {
   Mail,
   Info,
   Shield, // icon cho Admin Panel
-    Wallet,
+  Wallet,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -153,11 +153,10 @@ export default function Navbar() {
         {/* Khung trung tâm kiểu UI mới */}
         <div
           className={`flex items-center justify-between w-[90%] max-w-6xl px-6 py-3 transition-all duration-500
-          ${
-            scrolled
+          ${scrolled
               ? "w-full max-w-full bg-slate-950/95 backdrop-blur-xl border border-white/10 shadow-lg"
               : "rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md"
-          }`}
+            }`}
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
@@ -242,16 +241,16 @@ export default function Navbar() {
                       Lịch sử giao dịch
                     </Link>
                   </DropdownMenuItem>
-{/* 💰 Ví của tôi */}
-<DropdownMenuItem asChild className="p-0">
-  <Link
-    href="/wallet"
-    className="flex items-center gap-2 w-full p-2 text-gray-200 hover:bg-slate-800 rounded-md"
-  >
-    <Wallet className="w-4 h-4 text-green-400" />
-    Ví & nạp tiền
-  </Link>
-</DropdownMenuItem>
+                  {/* 💰 Ví của tôi */}
+                  <DropdownMenuItem asChild className="p-0">
+                    <Link
+                      href="/wallet"
+                      className="flex items-center gap-2 w-full p-2 text-gray-200 hover:bg-slate-800 rounded-md"
+                    >
+                      <Wallet className="w-4 h-4 text-green-400" />
+                      Ví & nạp tiền
+                    </Link>
+                  </DropdownMenuItem>
                   {/* Hồ sơ cá nhân */}
                   <DropdownMenuItem asChild className="p-0">
                     <Link
@@ -337,6 +336,11 @@ export default function Navbar() {
                   {/* Lịch sử giao dịch (mobile) */}
                   <MobileNavLink href="/history">
                     📜 Lịch sử giao dịch
+                  </MobileNavLink>
+
+                  {/* 💰 Ví của tôi (mobile) */}
+                  <MobileNavLink href="/wallet">
+                    💰 Ví & nạp tiền
                   </MobileNavLink>
 
                   {/* Hồ sơ cá nhân (mobile) */}
