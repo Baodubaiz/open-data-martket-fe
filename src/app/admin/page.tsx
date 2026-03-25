@@ -35,7 +35,7 @@ export default function AdminHome() {
             <AdminSidebar currentTab={tab} onSelectTab={setTab} />
           </div>
 
-          <main className="flex-1 p-6 text-white hidden-scrollbar ml-64">
+          <main className="flex-1 p-6 text-white hidden-scrollbar md:ml-64">
             {tab === "dashboard" && <div>📊 Trang tổng quan</div>}
 
             {tab === "users" && <UserManager />}

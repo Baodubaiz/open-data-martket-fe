@@ -33,7 +33,7 @@ export default function SellerDashboardPage() {
                     </div>
 
                     {/* Main content */}
-                    <main className={`flex-1 p-6 ml-64 hidden-scrollbar`}>
+                    <main className={`flex-1 p-6 md:ml-64 hidden-scrollbar`}>
 
                         {tab === "datasets" && <SellerDatasetPage />}
                         {tab === "orders" && <SellerOrderPage />}

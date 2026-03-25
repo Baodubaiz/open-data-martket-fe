@@ -61,9 +61,12 @@ export default function AdminDatasetPage() {
 
     const handleToggleActive = async (dataset: any) => {
         try {
+            const formData = new FormData();
+            formData.append("is_active", String(!dataset.is_active));
+
             await updateDataset.mutateAsync({
                 id: dataset.dataset_id,
-                data: { is_active: !dataset.is_active },
+                formData: formData,
             });
             toast.success("Cập nhật trạng thái thành công!");
         } catch {

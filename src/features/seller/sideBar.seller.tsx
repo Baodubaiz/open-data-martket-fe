@@ -10,9 +10,11 @@ import {
     ShieldCheck,
     CreditCard,
     AlertTriangle,   // ⭐ NEW ICON
+    Menu,
+    X
 } from "lucide-react";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
@@ -22,7 +24,20 @@ interface SellerSidebarProps {
 }
 
 export default function SellerSidebar({ currentTab, onSelectTab }: SellerSidebarProps) {
-    const [open, setOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+    const logoutRef = useRef<HTMLDivElement>(null);
+
+    // Close logout menu when clicking outside
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (logoutRef.current && !logoutRef.current.contains(event.target as Node)) {
+                setIsLogoutOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     // 🧠 Giải mã token để lấy thông tin seller
     let userInfo = { name: "Seller", email: "seller@example.com" };
@@ -37,7 +52,7 @@ export default function SellerSidebar({ currentTab, onSelectTab }: SellerSidebar
                 };
             }
         }
-    } catch {}
+    } catch { }
 
     const handleLogout = () => {
         Cookies.remove("accessToken");
@@ -59,63 +74,97 @@ export default function SellerSidebar({ currentTab, onSelectTab }: SellerSidebar
     ];
 
     return (
-        <aside className="w-64 h-screen bg-gray-900 border-r border-gray-800 flex flex-col fixed top-0 left-0 bottom-0 z-20">
-            {/* Header */}
-            <div className="p-6">
-                <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-500 rounded-lg flex items-center justify-center">
-                        <Database className="text-white w-4 h-4" />
-                    </div>
-                    <span className="text-xl font-semibold text-white">Seller Panel</span>
-                </div>
-            </div>
+        <>
+            {/* --- Mobile Toggle Button --- */}
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="fixed top-4 left-4 z-50 p-2 bg-gray-900 border border-gray-700 rounded-lg text-white md:hidden hover:bg-gray-800 transition-colors"
+            >
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
 
-            {/* Nav */}
-            <nav className="flex-1 px-4 space-y-2">
-                {menuItems.map((item) => {
-                    const Icon = item.icon;
-                    const isActive = currentTab === item.key;
+            {/* --- Backdrop for Mobile --- */}
+            {isOpen && (
+                <div
+                    onClick={() => setIsOpen(false)}
+                    className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden animate-in fade-in duration-300"
+                />
+            )}
 
-                    return (
-                        <div
-                            key={item.key}
-                            onClick={() => onSelectTab(item.key)}
-                            className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium cursor-pointer transition-all ${
-                                isActive
-                                    ? "bg-gray-800 text-white"
-                                    : "text-gray-400 hover:text-white hover:bg-gray-800"
-                            }`}
-                        >
-                            <Icon className="w-5 h-5" />
-                            <span>{item.label}</span>
+            {/* --- Sidebar Content --- */}
+            <aside
+                className={`w-64 h-screen bg-gray-900 border-r border-gray-800 flex flex-col fixed top-0 left-0 bottom-0 z-40 transition-transform duration-300 ease-in-out ${
+                    isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+                }`}
+            >
+                {/* Header */}
+                <div className="p-6">
+                    <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-500 rounded-lg flex items-center justify-center">
+                            <Database className="text-white w-4 h-4" />
                         </div>
-                    );
-                })}
-            </nav>
-
-            {/* Footer */}
-            <div className="p-4 border-t border-gray-800 hover:bg-gray-800/50 transition-colors relative group">
-                <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
-                        <User className="text-white w-4 h-4" />
-                    </div>
-                    <div className="flex-1">
-                        <p className="text-sm font-medium text-white">{userInfo.name}</p>
-                        <p className="text-xs text-gray-400">{userInfo.email}</p>
+                        <span className="text-xl font-semibold text-white">Seller Panel</span>
                     </div>
                 </div>
 
-                {/* Hover logout */}
-                <div className="hidden group-hover:block absolute bottom-16 left-4 right-4 bg-gray-900 border border-gray-700 rounded-xl shadow-lg animate-in fade-in slide-in-from-bottom-2 z-50">
-                    <button
-                        onClick={handleLogout}
-                        className="flex items-center w-full px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 rounded-lg"
+                {/* Nav */}
+                <nav className="flex-1 px-4 space-y-1 overflow-y-auto hidden-scrollbar">
+                    {menuItems.map((item) => {
+                        const Icon = item.icon;
+                        const isActive = currentTab === item.key;
+
+                        return (
+                            <div
+                                key={item.key}
+                                onClick={() => {
+                                    onSelectTab(item.key);
+                                    setIsOpen(false);
+                                }}
+                                className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium cursor-pointer transition-all ${
+                                    isActive
+                                        ? "bg-gray-800 text-white"
+                                        : "text-gray-400 hover:text-white hover:bg-gray-800"
+                                }`}
+                            >
+                                <Icon className="w-5 h-5" />
+                                <span>{item.label}</span>
+                            </div>
+                        );
+                    })}
+                </nav>
+
+                {/* Footer */}
+                <div 
+                    ref={logoutRef}
+                    className="p-4 border-t border-gray-800 hover:bg-gray-800/50 transition-colors relative"
+                >
+                    <div 
+                        className="flex items-center space-x-3 cursor-pointer"
+                        onClick={() => setIsLogoutOpen(!isLogoutOpen)}
                     >
-                        <LogOut className="w-4 h-4 mr-2 text-gray-400" />
-                        Đăng xuất
-                    </button>
+                        <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
+                            <User className="text-white w-4 h-4" />
+                        </div>
+                        <div className="flex-1">
+                            <p className="text-sm font-medium text-white">{userInfo.name}</p>
+                            <p className="text-xs text-gray-400">{userInfo.email}</p>
+                        </div>
+                    </div>
+
+                    {/* Popup logout */}
+                    {isLogoutOpen && (
+                        <div className="absolute bottom-16 left-4 right-4 bg-gray-900 border border-gray-700 rounded-xl shadow-lg animate-in fade-in slide-in-from-bottom-2 z-50">
+                            <button
+                                onClick={handleLogout}
+                                className="flex items-center w-full px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 rounded-lg"
+                            >
+                                <LogOut className="w-4 h-4 mr-2 text-gray-400" />
+                                Đăng xuất
+                            </button>
+                        </div>
+                    )}
                 </div>
-            </div>
-        </aside>
+            </aside>
+        </>
     );
 }
